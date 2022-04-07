@@ -1,0 +1,20 @@
+[
+  {
+    "title": "Monitor Samsung",
+    "price": 150,
+    "thumbnail": "https://monitor",
+    "id": 1
+  },
+  {
+    "title": "Teclado Logitech",
+    "price": 150,
+    "thumbnail": "https://teclado",
+    "id": 2
+  },
+  {
+    "title": "Mouse Logitech",
+    "price": 150,
+    "thumbnail": "https://mouse",
+    "id": 3
+  }
+]
