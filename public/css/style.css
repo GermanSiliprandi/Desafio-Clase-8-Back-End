@@ -3,3 +3,6 @@ body {
 	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 	font-weight: bolder;
 }
+.animate__fadeOut {
+	animation-duration: 4s;
+}

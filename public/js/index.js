@@ -27,7 +27,9 @@ const postProducto = async (e) => {
 		thumbnail: thumbnailValue,
 	};
 	await postData("http://localhost:8080/api/productos/", product);
-	document.getElementById("response").innerHTML = "Producto Enviado";
+	const response = document.getElementById("response");
+	response.innerHTML = "Producto Enviado";
+	response.classList.add("animate__fadeOut");
 };
 sendForm = document.getElementById("sendForm");
 sendForm.addEventListener("click", postProducto);
