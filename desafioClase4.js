@@ -37,7 +37,7 @@ async function writeFileError(object, finalMessage) {
 	}
 }
 
-async function writeFile(list, finalMessage) {
+async function writeFile(list, finalMessage = "") {
 	try {
 		await fs.promises.writeFile(fileName, list);
 		console.log(finalMessage);
@@ -96,11 +96,37 @@ async function deleteId(id) {
 		const fileParse = JSON.parse(file);
 		const result = fileParse.filter((product) => product.id != id);
 		if (result.length < fileParse.length) {
-			console.log(result);
 			const fileString = JSON.stringify(result, null, 2);
 			writeFile(fileString, `The product with the ID ${id} was deleted`);
+			return `The product with the ID ${id} was deleted`;
 		} else {
 			console.log("There isn't any object with that ID");
+			return null;
+		}
+	} catch (error) {
+		const idError = new Error(
+			`There isn't any object with that ID: ${error}`
+		);
+		console.error(idError);
+	}
+}
+
+async function putId(prod, id) {
+	try {
+		const file = await fs.promises.readFile(fileName, "utf-8");
+		const fileParse = JSON.parse(file);
+		const fileFilter = fileParse.filter((product) => product.id != id);
+		if (fileFilter.length < fileParse.length) {
+			prod.id = id;
+			fileFilter.push(prod);
+			fileFilter.sort((a, b) => {
+				return a.id - b.id;
+			});
+			const resultString = JSON.stringify(fileFilter, null, 2);
+			writeFile(resultString);
+			return prod;
+		} else {
+			return null;
 		}
 	} catch (error) {
 		const idError = new Error(
@@ -117,7 +143,7 @@ class Contenedor {
 	}
 	async getById(id) {
 		const result = await getId(id);
-		console.log(result);
+
 		return result;
 	}
 	async getAll() {
@@ -131,16 +157,22 @@ class Contenedor {
 	async deleteAll() {
 		await deleteAllFiles("All Objects Deleted");
 	}
+
+	async putById(prod, id) {
+		const result = await putId(prod, id);
+		return result;
+	}
 }
 
 productos = new Contenedor();
 module.exports = productos;
-
-/*productos.save({
-	title: "Monitor Samsung",
+/*
+productos.save({
+	title: "Teclado Logitech",
 	price: 150,
-	thumbnail: "https://monitor",
-});*/
+	thumbnail: "https://tecladologitech",
+});
+*/
 /*productos.getById(1);*/
 //console.log(productos.getById(3));
 /*productos.getAll();*/

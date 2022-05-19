@@ -1,20 +1,14 @@
 [
   {
-    "title": "Monitor Samsung",
-    "price": 150,
-    "thumbnail": "https://monitor",
+    "title": "aaa",
+    "price": "150",
+    "thumbnail": "aaa",
     "id": 1
   },
   {
-    "title": "Teclado Logitech",
-    "price": 150,
-    "thumbnail": "https://teclado",
+    "title": "aaa",
+    "price": "150",
+    "thumbnail": "aaa",
     "id": 2
-  },
-  {
-    "title": "Mouse Logitech",
-    "price": 150,
-    "thumbnail": "https://mouse",
-    "id": 3
   }
 ]
